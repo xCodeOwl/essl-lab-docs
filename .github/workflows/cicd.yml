@@ -18,6 +18,7 @@ jobs:
 #            make test && \
 #            make coverage && \
 #            make cleanup
+        run: echo "Pipeline started"
 
       - name: Docker build then push
         uses: xCodeOwl/essl-lab-docs@master
