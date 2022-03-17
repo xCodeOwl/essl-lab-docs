@@ -12,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build and Test
-        # Run your CI script before build docker image  
-        run: make install && \
-             make test && \
-             make coverage && \
-             make cleanup
+#     - name: Build and Test
+#       # Run your CI script before build docker image  
+#       run: make install && \
+#            make test && \
+#            make coverage && \
+#            make cleanup
 
       - name: Docker build then push
         uses: xCodeOwl/essl-lab-docs@master
