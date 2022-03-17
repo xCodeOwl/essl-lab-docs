@@ -12,6 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        name: Check out code
 #     - name: Build and Test
 #       # Run your CI script before build docker image  
 #       run: make install && \
@@ -20,20 +21,13 @@ jobs:
 #            make cleanup
       - name: Starting pipeline
         run: echo Pipeline started!
-
-      - name: Docker build then push
-        uses: xCodeOwl/essl-lab-docs@master
-        env:
-            DOCKER_USER: ${{ secrets.DOCKER_USER }}
-            PASSWORD: ${{ secrets.PASSWORD }}
-
-            SEMVER: 0.1.0
-            HOST: docker.com
-            ORG: codebird
-            APPNAME: essl-docs
-            # if DEV is true then your image tag is as follow
-            # 0.1.0-dev-c7bf9e21
-            # where c7bf9e21 is your 8 char git hash
-            # best for your staging server
-            # else, the tag will be 0.1.0 ($SEMVER)
-            DEV: false
+    
+      - uses: mr-smithers-excellent/docker-build-push@v5
+        name: Build & push Docker image
+        with:
+          image: codeird/ess-docs
+          tags: v3, latest
+          registry: docker.io
+          dockerfile: Dockerfile.ci
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.PASSWORD }}

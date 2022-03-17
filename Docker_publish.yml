@@ -12,3 +12,21 @@ jobs:
         name: myDocker/repository
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+
+
+      - name: Docker build then push
+        uses: xCodeOwl/essl-lab-docs@master
+        env:
+            DOCKER_USER: ${{ secrets.DOCKER_USER }}
+            PASSWORD: ${{ secrets.PASSWORD }}
+
+            SEMVER: 0.1.0
+            HOST: docker.com
+            ORG: codebird
+            APPNAME: essl-docs
+            # if DEV is true then your image tag is as follow
+            # 0.1.0-dev-c7bf9e21
+            # where c7bf9e21 is your 8 char git hash
+            # best for your staging server
+            # else, the tag will be 0.1.0 ($SEMVER)
+            DEV: false
