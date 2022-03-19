@@ -2,9 +2,9 @@
 
 name: Publish Docker image
 # https://docs.github.com/en/actions/publishing-packages/publishing-docker-images
-on:
-  release:
-    types: [published]
+on: [push]
+# release:
+#   types: [published]
 
 jobs:
   push_to_registry:
