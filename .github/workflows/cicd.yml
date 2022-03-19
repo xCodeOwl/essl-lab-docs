@@ -1,33 +1,48 @@
 # This CI will run after publish a new release
 
-name: Continous Integration and Continous Delivery
-#   https://github.com/marketplace/actions/docker-build-then-push
+name: Build and Publish
+# https://event-driven.io/en/how_to_buid_and_push_docker_image_with_github_actions/
 
-on: [push]
-# release:
-#   types: [published]
-  
-jobs:
-  processing_docs:
+on:
+  # run it on push to the default repository branch
+  push:
+    branches: [main]
+  # run it during pull request
+  pull_request:
+
+defaults:
+  # define job to build and publish docker image
+  build-and-push-docker-image:
+    name: Build Docker image and push to repositories
+    # run only when code is compiling and tests are passing
     runs-on: ubuntu-latest
+
+    # steps to perform in job
     steps:
-      - uses: actions/checkout@v2
-        name: Check out code
-#     - name: Build and Test
-#       # Run your CI script before build docker image  
-#       run: make install && \
-#            make test && \
-#            make coverage && \
-#            make cleanup
-      - name: Starting pipeline
-        run: echo Pipeline started!
-    
-      - uses: mr-smithers-excellent/docker-build-push@v5
-        name: Build & push Docker image
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # setup Docker buld action
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
         with:
-          image: codebird/essl-docs
-          tags: v3, latest
-#         registry: docker.io
-          dockerfile: Dockerfile
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Build image and push to Docker Hub Registry
+        uses: docker/build-push-action@v2
+        with:
+          # relative path to the place where source code with Dockerfile is located
+          context: .
+          # Note: tags has to be all lower-case
+          tags: |
+            codebird/essl-docs:v3
+          # build on feature branches, push only on main branch
+          push: ${{ github.ref == 'refs/heads/main' }}
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
