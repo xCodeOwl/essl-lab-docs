@@ -20,7 +20,7 @@ jobs:
             DOCKER_USER: ${{ secrets.DOCKER_USER }}
             PASSWORD: ${{ secrets.PASSWORD }}
 
-            SEMVER: 0.1.0
+            SEMVER: 2.0.1
             HOST: docker.com
             ORG: codebird
             APPNAME: essl-docs
