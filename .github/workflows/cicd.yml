@@ -19,7 +19,7 @@ env:
   REGISTRY: docker.io
 # IMAGE_NAME: ${{ github.repository }}
   IMAGE_NAME: codebird/essl-docs
-  IMAGE_TAG: 4.0.2
+  IMAGE_TAG: 4.0.3
 
 jobs:
   push_to_registry:
@@ -37,10 +37,9 @@ jobs:
 #           docker.io/${{ github.repository }}
 #           ghcr.io/${{ github.repository }}
 #           quay.io/${{ github.repository }}
-          tags: |
-            type=semver,pattern={{major}}.{{minor}}.{{patch}},value=${{ env.IMAGE_TAG }}
-            type=semver,pattern={{major}}.{{minor}},value=${{ env.IMAGE_TAG }}
-            type=semver,pattern={{major}},value=${{ env.IMAGE_TAG }}
+          tags: type=semver,pattern={{major}}.{{minor}}.{{patch}},value=${{ env.IMAGE_TAG }}
+#           type=semver,pattern={{major}}.{{minor}},value=${{ env.IMAGE_TAG }}
+#           type=semver,pattern={{major}},value=${{ env.IMAGE_TAG }}
 #         flavor: |
 #           latest=true
       
