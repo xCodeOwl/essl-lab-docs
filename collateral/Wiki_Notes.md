@@ -19,11 +19,6 @@ The Action button will reveal a number of templates that can be re-used. Don't f
   * https://hub.docker.com/r/jojomi/hugo
 
 ### Raw Links 'klakegg/hugo'
-  * https://hub.docker.com/r/klakegg/hugo/
-  * https://github.com/klakegg/docker-hugo/blob/master/README.md
-  * https://github.com/klakegg/actions-hugo
-
-### Raw Links 'klakegg/hugo'
   * [devopsdays/docker-hugo-server](https://github.com/devopsdays/docker-hugo-server)
   * https://hub.docker.com/r/klakegg/hugo/
   * https://github.com/klakegg/docker-hugo/blob/master/README.md
