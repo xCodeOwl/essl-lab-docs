@@ -15,6 +15,9 @@ on:
 # release:
 #   types: [published]
 
+env:
+  IMAGE_TAG: 4.0.1
+
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
@@ -32,11 +35,11 @@ jobs:
 #           ghcr.io/${{ github.repository }}
 #           quay.io/${{ github.repository }}
           tags: |
-            type=ref,event=branch
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-          flavor: |
-            latest=true
+            type=semver,pattern={{major}}.{{minor}}.{{patch}},value=${{ env.IMAGE_TAG }}
+            type=semver,pattern={{major}}.{{minor}},value=${{ env.IMAGE_TAG }}
+            type=semver,pattern={{major}},value=${{ env.IMAGE_TAG }}
+#         flavor: |
+#           latest=true
       
 #   Check out submodules used for themes
 #     - name: Checkout submodules
