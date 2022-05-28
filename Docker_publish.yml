@@ -115,6 +115,7 @@ jobs:
 
 name: Publish Docker image
 # https://docs.github.com/en/actions/publishing-packages/publishing-docker-images
+# https://docs.github.com/en/actions/security-guides/encrypted-secrets
 on:
   release:
     types: [published]
