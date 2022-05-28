@@ -72,7 +72,7 @@ defaults:
           context: .
           # Note: tags has to be all lower-case
           tags: |
-            codebird/essl-docs:v3
+            codebird/essl-docs:2.0.1
           # build on feature branches, push only on main branch
           push: ${{ github.ref == 'refs/heads/main' }}
 
@@ -106,7 +106,7 @@ jobs:
         name: Build & push Docker image
         with:
           image: codebird/essl-docs
-          tags: v3, latest
+          tags: 2.0.1
           registry: docker.io
           dockerfile: Dockerfile
           username: ${{ secrets.DOCKER_USER }}
