@@ -16,7 +16,10 @@ on:
 #   types: [published]
 
 env:
-  IMAGE_TAG: 4.0.1
+  REGISTRY: docker.io
+# IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: codebird/essl-docs
+  IMAGE_TAG: 4.0.2
 
 jobs:
   push_to_registry:
@@ -30,8 +33,8 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: |
-            docker.io/${{ github.repository }}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+#           docker.io/${{ github.repository }}
 #           ghcr.io/${{ github.repository }}
 #           quay.io/${{ github.repository }}
           tags: |
