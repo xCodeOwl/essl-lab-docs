@@ -9,7 +9,6 @@ RUN apk add hugo
 # Copy the contents of the current working directory to the hugo-site
 # directory. The directory will be created if it doesn't exist.
 COPY . /hugo-site
-RUN git submodule add https://github.com/google/docsy.git /hugo-site/themes/docsy 
 
 # Use Hugo to build the static site files.
 RUN hugo -v --source=/hugo-site --destination=/hugo-site/public

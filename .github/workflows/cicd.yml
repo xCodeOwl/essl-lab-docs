@@ -28,13 +28,6 @@ jobs:
     steps:
       - name: Check out ESSL-Lab-Docs repo with sub-modules
         uses: actions/checkout@v2
-      - name: Checkout submodules
-        run: git submodule update --init --recursive
-#       uses: textbook/git-checkout-submodule-action@master
-#       with:
-#         remote: true
-#       with:
-#         submodules: recursive
 
       - name: Generate Docker metadata
         id: meta
