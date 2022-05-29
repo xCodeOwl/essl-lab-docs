@@ -6,6 +6,16 @@ FROM alpine:latest as HUGOINSTALL
 RUN apk update
 RUN apk add hugo
 
+#ENV HUGO_VERSION="0.59.1"
+
+#RUN apk add --update wget
+
+# Install Hugo.
+#RUN wget --quiet https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_Linux-64bit.tar.gz && \
+#tar -xf hugo_${HUGO_VERSION}_Linux-64bit.tar.gz && \
+#mv hugo /usr/local/bin/hugo && \
+#rm -rf hugo_${HUGO_VERSION}_Linux-64bit.tar.gz
+
 # Copy the contents of the current working directory to the hugo-site
 # directory. The directory will be created if it doesn't exist.
 COPY . /hugo-site
